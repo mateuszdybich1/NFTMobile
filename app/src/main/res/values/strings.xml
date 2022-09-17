@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">NFTMobile</string>
+    <string name="Password">Password</string>
+    <string name="RepPassword">Repeat Password</string>
+    <string name="ForgPass">Forgot password?</string>
+    <string name="Register">Register now</string>
+    <string name="Login">Login</string>
+    <string name="Email">Email</string>
+    <string name="LogOut">Log out</string>
+</resources>

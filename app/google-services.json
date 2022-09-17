@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "221163367866",
+    "firebase_url": "https://marketdb-fad6a-default-rtdb.firebaseio.com",
+    "project_id": "marketdb-fad6a",
+    "storage_bucket": "marketdb-fad6a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:221163367866:android:96f54b438299b23b238183",
+        "android_client_info": {
+          "package_name": "com.dybich.nftmobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "221163367866-jl0h501q3s6e0boge7bt3q0qp32cd7f2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBO9z0igdjFWmMO4wA71E3SsBohJxj70-Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "221163367866-jl0h501q3s6e0boge7bt3q0qp32cd7f2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
