@@ -1,65 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   android:background="@color/white"
                                                    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
                                                    android:layout_height="match_parent">
 
-    <EditText
-            android:background="@drawable/rounded_corner"
-            android:textColorHint="#1976D2"
-            android:layout_width="350dp"
-            android:layout_height="60dp"
-            android:inputType="textPersonName"
-            android:ems="10"
 
-            android:hint="@string/Login"
-            android:id="@+id/registerLogin"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="128dp"
-            app:layout_constraintHorizontal_bias="0.491"/>
-    <EditText
-            android:background="@drawable/rounded_corner"
-            android:textColorHint="#1976D2"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:inputType="textPassword"
-            android:ems="10"
-            android:id="@+id/registerPass"
-            app:layout_constraintStart_toStartOf="@+id/registerMail"
-            app:layout_constraintEnd_toEndOf="@+id/registerMail"
-            app:layout_constraintTop_toBottomOf="@+id/registerMail" android:layout_marginTop="16dp"
-            app:layout_constraintHorizontal_bias="0.0" android:hint="@string/Password"/>
-    <EditText
-            android:background="@drawable/rounded_corner"
-            android:textColorHint="#1976D2"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:inputType="textPassword"
-            android:ems="10"
-            android:id="@+id/registerRepPass"
-            app:layout_constraintTop_toBottomOf="@+id/registerPass"
-            android:layout_marginTop="16dp" app:layout_constraintStart_toStartOf="@+id/registerPass"
-            app:layout_constraintEnd_toEndOf="@+id/registerPass" app:layout_constraintHorizontal_bias="0.0"
-            android:hint="@string/RepPassword"/>
-    <EditText
-            android:background="@drawable/rounded_corner"
-            android:textColorHint="#1976D2"
+    <com.google.android.material.textfield.TextInputLayout
+
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:id="@+id/Nicklayout"
             android:layout_width="350dp"
-            android:layout_height="60dp"
-            android:inputType="textEmailAddress"
-            android:ems="10"
+            android:layout_height="80dp"
+            android:hint="@string/Nickname"
+            app:counterEnabled="true"
+            app:counterMaxLength="15"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="128dp" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.508">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/NickET"
+                android:inputType="textPersonName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="#9E9E9E" tools:ignore="TextContrastCheck"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:id="@+id/Email_reg_layout"
+            android:layout_width="350dp"
+            android:layout_height="80dp"
             android:hint="@string/Email"
-            android:id="@+id/registerMail"
-            app:layout_constraintTop_toBottomOf="@+id/registerLogin"
-            app:layout_constraintStart_toStartOf="@+id/registerLogin"
-            app:layout_constraintEnd_toEndOf="@+id/registerLogin" android:layout_marginTop="16dp"
-            app:layout_constraintHorizontal_bias="0.0"/>
+
+            app:layout_constraintTop_toBottomOf="@+id/Nicklayout"
+            app:layout_constraintStart_toStartOf="@+id/Nicklayout"
+            app:layout_constraintEnd_toEndOf="@+id/Nicklayout" android:layout_marginTop="4dp"
+            app:layout_constraintHorizontal_bias="0.0">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/Email_reg_ET"
+                android:inputType="textEmailAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="#9E9E9E"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:id="@+id/Password_reg_layout"
+            android:layout_width="350dp"
+            android:layout_height="80dp"
+            android:hint="@string/Password"
+            app:counterEnabled="true"
+            app:counterMaxLength="20"
+            app:passwordToggleEnabled="true"
+
+            app:layout_constraintTop_toBottomOf="@+id/Email_reg_layout"
+            app:layout_constraintStart_toStartOf="@+id/Email_reg_layout"
+            app:layout_constraintEnd_toEndOf="@+id/Email_reg_layout" android:layout_marginTop="4dp"
+            app:layout_constraintHorizontal_bias="0.0">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/Password_reg_ET"
+                android:inputType="textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="#757575" tools:ignore="TextContrastCheck"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:id="@+id/Password_rep_reg_layout"
+            android:layout_width="350dp"
+            android:layout_height="80dp"
+            android:hint="@string/RepPassword"
+
+
+            app:layout_constraintTop_toBottomOf="@+id/Password_reg_layout"
+            app:layout_constraintStart_toStartOf="@+id/Password_reg_layout"
+            app:layout_constraintEnd_toEndOf="@+id/Password_reg_layout" android:layout_marginTop="4dp"
+            app:layout_constraintHorizontal_bias="0.0">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/Password_rep_reg_ET"
+                android:inputType="textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="#757575" tools:ignore="TextContrastCheck"/>
+    </com.google.android.material.textfield.TextInputLayout>
     <Button
+            android:textColor="@color/white"
             android:text="@string/Register"
-            android:onClick ="nowregister"
+            android:onClick="nowregister"
             android:layout_width="0dp"
             android:layout_height="60dp" android:id="@+id/btnregister"
-            app:layout_constraintTop_toBottomOf="@+id/registerRepPass"
-            app:layout_constraintEnd_toEndOf="@+id/registerRepPass"
-            app:layout_constraintStart_toStartOf="@+id/registerRepPass" android:layout_marginTop="40dp"
-            app:backgroundTint="#3F51B5" app:layout_constraintHorizontal_bias="0.0"/>
+            app:backgroundTint="#3F51B5"
+            app:layout_constraintEnd_toEndOf="@+id/Password_rep_reg_layout"
+            app:layout_constraintStart_toStartOf="@+id/Password_rep_reg_layout"
+            app:layout_constraintTop_toBottomOf="@+id/Password_rep_reg_layout" android:layout_marginTop="28dp"
+            app:layout_constraintHorizontal_bias="0.0"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

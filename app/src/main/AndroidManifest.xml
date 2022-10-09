@@ -3,6 +3,8 @@
           xmlns:tools="http://schemas.android.com/tools"
           package="com.dybich.nftmobile">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
             android:allowBackup="true"
             android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,9 +15,15 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.NFTMobile"
             tools:targetApi="31">
-        <activity
-                android:name=".SplashScreenActivity" android:theme = "@style/SplashScreenTheme" android:exported="true">
 
+        <activity
+                android:name=".ConfirmMailActivity"
+                android:exported="false"
+                android:theme="@style/MainActivityTheme"/>
+        <activity
+                android:name=".SplashScreenActivity"
+                android:exported="true"
+                android:theme="@style/SplashScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -24,43 +32,35 @@
         </activity>
         <activity
                 android:name=".MainActivity"
-                android:exported="true" android:noHistory="true">
-
+                android:exported="true"
+                android:noHistory="true"
+                android:theme="@style/MainActivityTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
-
             </intent-filter>
         </activity>
         <activity
                 android:name=".LoginActivity"
-                android:exported="true">
-
+                android:exported="true"
+                android:theme="@style/LoginTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
-
             </intent-filter>
-
         </activity>
         <activity
                 android:name=".RegisterActivity"
-                android:exported="true">
-
+                android:exported="true"
+                android:theme="@style/LoginTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
-
             </intent-filter>
-
         </activity>
         <activity
                 android:name=".LoggedinActivity"
-                android:exported="true" android:noHistory="true">
+                android:exported="true"
+                android:theme="@style/MainActivityTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
-
             </intent-filter>
         </activity>
     </application>

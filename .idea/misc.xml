@@ -3,11 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/mateu/Desktop/kotlin/NFTMobile/app/src/main/res/drawable/cursor_color.xml" value="0.1065" />
         <entry key="..\:/Users/mateu/Desktop/kotlin/NFTMobile/app/src/main/res/drawable/ic_baseline_local_fire_department_24.xml" value="0.2265" />
         <entry key="..\:/Users/mateu/Desktop/kotlin/NFTMobile/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1075" />
         <entry key="..\:/Users/mateu/Desktop/kotlin/NFTMobile/app/src/main/res/drawable/rounded_corner.xml" value="0.2265" />
+        <entry key="..\:/Users/mateu/Desktop/kotlin/NFTMobile/app/src/main/res/drawable/single_item.xml" value="0.241" />
+        <entry key="..\:/Users/mateu/Desktop/kotlin/NFTMobile/app/src/main/res/drawable/text_input_color.xml" value="0.241" />
+        <entry key="..\:/Users/mateu/Desktop/kotlin/NFTMobile/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.15160642570281124" />
+        <entry key="..\:/Users/mateu/Desktop/kotlin/NFTMobile/app/src/main/res/layout-w936dp/activity_login.xml" value="0.176953125" />
+        <entry key="..\:/Users/mateu/Desktop/kotlin/NFTMobile/app/src/main/res/layout/activity_login.xml" value="0.2359375" />
         <entry key="..\:/Users/mateu/Desktop/kotlin/NFTMobile/app/src/main/res/layout/activity_main.xml" value="0.4" />
-        <entry key="..\:/Users/mateu/Desktop/kotlin/NFTMobile/app/src/main/res/layout/loggedin.xml" value="0.4" />
+        <entry key="..\:/Users/mateu/Desktop/kotlin/NFTMobile/app/src/main/res/layout/confirm_mail.xml" value="0.264" />
+        <entry key="..\:/Users/mateu/Desktop/kotlin/NFTMobile/app/src/main/res/layout/fragment_login.xml" value="0.2359375" />
+        <entry key="..\:/Users/mateu/Desktop/kotlin/NFTMobile/app/src/main/res/layout/loggedin.xml" value="0.264" />
         <entry key="..\:/Users/mateu/Desktop/kotlin/NFTMobile/app/src/main/res/layout/login.xml" value="0.4" />
         <entry key="..\:/Users/mateu/Desktop/kotlin/NFTMobile/app/src/main/res/layout/register.xml" value="0.4" />
         <entry key="..\:/Users/mateu/Desktop/kotlin/NFTMobile/app/src/main/res/layout/splash_screen.xml" value="0.22826086956521738" />

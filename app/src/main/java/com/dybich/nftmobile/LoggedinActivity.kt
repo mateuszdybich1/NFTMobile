@@ -1,18 +1,17 @@
 package com.dybich.nftmobile
 
-import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
 
@@ -26,7 +25,7 @@ class LoggedinActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.loggedin)
-
+        database = Firebase.database.reference
 
         auth = FirebaseAuth.getInstance()
         logout = findViewById(R.id.btnlogout)
@@ -34,9 +33,14 @@ class LoggedinActivity: AppCompatActivity() {
         user?.let {
 
             val email = user.email.toString()
+        database.child("users").child(user.uid.toString()).child("username").get().addOnSuccessListener {
+            val tvemail: TextView = findViewById(R.id.loggedinEmail)
+            val tvlogin: TextView = findViewById(R.id.loggedinUsername)
+            tvemail.text= email
+            val login : String = it.value.toString()
+            tvlogin.text = login
+        }
 
-            val tv: TextView = findViewById(R.id.username)
-            tv.text= email
 
 
 
@@ -47,13 +51,16 @@ class LoggedinActivity: AppCompatActivity() {
         val intent = Intent(this,MainActivity::class.java)
         startActivity(intent)
         overridePendingTransition(R.anim.slide_in_left,
-            R.anim.slide_out_right);
+            R.anim.slide_out_right)
+        finishAffinity();
+        finish()
     }
     }
 
     private var doubleBackToExitPressedOnce = false
     override fun onBackPressed() {
         if (doubleBackToExitPressedOnce) {
+            finishAffinity()
             finish()
         }
 
