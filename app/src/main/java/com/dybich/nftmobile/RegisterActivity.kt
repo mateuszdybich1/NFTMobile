@@ -1,5 +1,6 @@
 package com.dybich.nftmobile
 
+import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +9,10 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
+import com.android.volley.RequestQueue
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
@@ -16,6 +21,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import kotlin.random.Random
 
 
 class RegisterActivity : AppCompatActivity() {
@@ -59,6 +65,8 @@ class RegisterActivity : AppCompatActivity() {
 
     private lateinit var registerbtn : Button
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.register)
@@ -88,24 +96,21 @@ class RegisterActivity : AppCompatActivity() {
                 var passvar = passET.text.toString()
                 var reppassvar = repPassET.text.toString()
 
-
-
-
                 if(validNick == true && validEmail == true && validPass == true && validRepPass == true && passvar.length >=6){
                     if(android.util.Patterns.EMAIL_ADDRESS.matcher(emailvar).matches()){
+                        val progressDialog = ProgressDialog(this@RegisterActivity)
+
+                        progressDialog.show()
+
+                        progressDialog.setCancelable(false)
+                        progressDialog.setContentView(R.layout.progress_dialog_layout)
+                        progressDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
                         database.child("logins").child(logvar).get().addOnSuccessListener {
                             if(it.value == logvar)
                             {
+                                progressDialog.hide()
                                 nickLayout.error = "Nickname already used"
-                                nickET.setOnFocusChangeListener{_,focused->
-                                    if(!focused && logvar == nickET.text.toString()){
-                                        nickLayout.error = "Nickname already used"
-
-                                    }
-                                    else if( logvar != nickET.text.toString()){
-                                        nickLayout.error = null
-                                    }
-                                }
+                                nickCheck()
                             }
                             else
                             {
@@ -117,20 +122,16 @@ class RegisterActivity : AppCompatActivity() {
                                                 // Sign in success, update UI with the signed-in user's information
                                                 Log.d("TAG", "createUserWithEmail:success")
                                                 val confirmed = "false"
-                                                addUser(logvar,emailvar,confirmed)
+
+                                                val rand = Random.nextInt(1111,9999)
+                                                addUser(logvar,emailvar,confirmed, rand)
 
                                             }
                                             else{
 
+                                                progressDialog.hide()
                                                 emailLayout.error = "Email exists. Please sign in"
-                                                emailET.setOnFocusChangeListener { _, focused ->
-                                                    if (!focused && emailvar == emailET.text.toString()) {
-                                                        emailLayout.error = "Email exists. Please sign in"
-
-                                                    } else if (emailvar != emailET.text.toString()) {
-                                                        emailLayout.error = null
-                                                    }
-                                                }
+                                                emailCheck()
                                             }
 
                                         }
@@ -140,26 +141,12 @@ class RegisterActivity : AppCompatActivity() {
                                 else if (passvar != reppassvar){
 
                                     repPassLayout.error = "Repeat password is incorrect"
-                                    repPassET.setOnFocusChangeListener { _, focused ->
-                                        if (!focused && (reppassvar != passET.text.toString() || reppassvar == repPassET.text.toString())) {
-                                            passLayout.error = "Repeat password is incorrect"
-
-                                        } else if (reppassvar == passET.text.toString() && reppassvar == repPassET.text.toString()) {
-                                            passLayout.error = null
-                                        }
-                                    }
+                                    repPassCheck()
                                 }
                                 else if(passvar.length < 6) {
 
                                     passLayout.error = "Password must be at least 6 characters long"
-                                    passET.setOnFocusChangeListener { _, focused ->
-                                        if (!focused && passvar == passET.text.toString()) {
-                                            passLayout.error = "Password must be at least 6 characters long"
-
-                                        } else if (passvar != passET.text.toString()) {
-                                            passLayout.error = null
-                                        }
-                                    }
+                                    passCheck()
 
                                 }
                             }
@@ -167,6 +154,12 @@ class RegisterActivity : AppCompatActivity() {
                     }
                     else{
                         emailLayout.error = "Correct form of email needed"
+                        emailET.setOnFocusChangeListener{_,focused->
+                            if(!focused){
+                                emailValidation()
+                            }
+
+                        }
                     }
 
 
@@ -220,31 +213,57 @@ class RegisterActivity : AppCompatActivity() {
                     }
                 }
 
-
-
-
-
-
-
-
         }
 
     }
 
-    fun addUser(login: String, email: String,confirmed:String)
+     fun addUser(login: String, email: String,confirmed:String, rand:Int)
     {
          currentuser = auth.currentUser!!
         val uid = currentuser?.uid
         val user = User(login, email,confirmed)
         database.child("users").child(uid.toString()).setValue(user)
         database.child("logins").child(login).setValue(login)
-        val intent = Intent(this,ConfirmMailActivity::class.java)
-        startActivity(intent)
-        overridePendingTransition(R.anim.slide_in_right,
-            R.anim.slide_out_left);
-        finish()
+        codeVerification(rand)
+
     }
 
+    private fun codeVerification(rand:Int){
+
+        val value = rand.toString()
+        val currentUser = auth.currentUser
+        val email = currentUser?.email.toString()
+
+
+        val  url = "https://marketnft.000webhostapp.com/"
+        val requestQueue: RequestQueue = Volley.newRequestQueue(this)
+        val postRequest = object: StringRequest(Method.POST,url,  Response.Listener<String?> {
+                response ->
+            Toast.makeText(this,response,Toast.LENGTH_LONG).show()
+
+            val intent = Intent(this,ConfirmMailActivity::class.java)
+            intent.putExtra("rand", value)
+            startActivity(intent)
+            overridePendingTransition(R.anim.slide_in_right,
+                R.anim.slide_out_left);
+            finish()
+
+        }, Response.ErrorListener {
+                error ->
+            Log.d("TAG", error.message.toString())
+            Toast.makeText(this,error.message.toString(),Toast.LENGTH_LONG).show()
+        })
+        {
+            override fun getParams() : Map<String,String>{
+                val params = HashMap<String,String>()
+                params["email"]= email
+                params["code"] = value
+                return params
+
+            }
+        }
+        requestQueue.add(postRequest)
+    }
     private fun nickCheck(){
         nickET.addTextChangedListener {
             val id = it.toString()
@@ -275,7 +294,7 @@ class RegisterActivity : AppCompatActivity() {
             val id = it.toString()
             if(id == "" ){
                 emailLayout.error = "Email is empty"
-                validNick =false
+                validEmail =false
             }
             else if(id.contains(" ")){
                 emailLayout.error = "Email mustn't contain spaces"
@@ -333,9 +352,11 @@ class RegisterActivity : AppCompatActivity() {
         if (emailET.text.toString() != "" && !emailET.text.toString().contains(" ")) {
             if (!android.util.Patterns.EMAIL_ADDRESS.matcher(emailET.text.toString()).matches()) {
                 emailLayout.error = "Correct form of email needed"
+                validEmail = false
 
             } else {
                 emailLayout.error = null
+                validEmail = true
 
             }
         }
@@ -347,6 +368,7 @@ class RegisterActivity : AppCompatActivity() {
 
         overridePendingTransition(R.anim.slide_in_left,
             R.anim.slide_out_right);
+        finishAffinity()
         finish()
     }
 

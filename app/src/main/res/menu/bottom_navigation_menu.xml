@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+            android:id="@+id/main_Page_Fragment"
+
+            android:icon="@drawable/logo_icon"
+            android:title="@string/Main_Page"/>
+    <item
+            android:id="@+id/my_Profile_Fragment"
+
+            android:icon="@drawable/account_icon"
+            android:title="@string/My_Account"/>
+    <item
+            android:id="@+id/settings_Fragment"
+
+            android:icon="@drawable/settings_icon"
+            android:title="@string/Settings"/>
+
+</menu>

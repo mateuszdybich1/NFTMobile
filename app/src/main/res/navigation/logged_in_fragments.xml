@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/logged_in_fragments"
+            app:startDestination="@id/main_Page_Fragment">
+    <fragment android:id="@+id/main_Page_Fragment" android:name="com.dybich.nftmobile.Main_Page_Fragment"
+              android:label="fragment_main__page" tools:layout="@layout/fragment_main_page"/>
+    <fragment android:id="@+id/my_Profile_Fragment" android:name="com.dybich.nftmobile.My_Profile_Fragment"
+              android:label="fragment_my__profile" tools:layout="@layout/fragment_my_profile"/>
+    <fragment android:id="@+id/settings_Fragment" android:name="com.dybich.nftmobile.settings_Fragment"
+              android:label="fragment_settings" tools:layout="@layout/fragment_settings"/>
+</navigation>

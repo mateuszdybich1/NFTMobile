@@ -32,8 +32,8 @@ import com.google.firebase.ktx.Firebase
 import java.util.Random
 
  class ConfirmMailActivity : AppCompatActivity() {
-    private lateinit var auth: FirebaseAuth
-private lateinit var database: DatabaseReference
+     private lateinit var auth: FirebaseAuth
+     private lateinit var database: DatabaseReference
 
 
     private val et1:EditText by lazy {
@@ -48,7 +48,8 @@ private lateinit var database: DatabaseReference
     private val et4:EditText by lazy {
         findViewById(R.id.et4)
     }
-    private lateinit var resetBTN : Button
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,11 +58,11 @@ private lateinit var database: DatabaseReference
         database = Firebase.database.reference
         auth = FirebaseAuth.getInstance()
 
-
-            verifyEmail()
-            focus()
+        val rand :String = intent.getStringExtra("rand").toString()
+        setListener(rand)
 
     }
+
 
     private fun setListener(rand:String){
         setTextChangeListener(fromET = et1, targetET = et2)
@@ -143,6 +144,7 @@ private lateinit var database: DatabaseReference
             database.child("users").child(currentUser?.uid.toString()).child("isconfirmed").setValue("true")
             database.child("users").child(currentUser?.uid.toString()).child("isconfirmed").get().addOnSuccessListener {
                 if(it.value == "true"){
+                    database.child("users").child(currentUser?.uid.toString()).child("islogged").setValue("true")
                     val intent = Intent(this,LoggedinActivity::class.java)
                     startActivity(intent)
                     startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
@@ -156,36 +158,7 @@ private lateinit var database: DatabaseReference
             reset()
         }
     }
-    private fun verifyEmail(){
-        var rand:Int = (1111..9999).random()
-        val value = rand.toString()
-        val currentUser = auth.currentUser
-        var email = currentUser?.email.toString()
-        Log.d("TAG", email)
 
-        val url = "https://marketnft.000webhostapp.com/verification/verify.php"
-        val requestQueue: RequestQueue = Volley.newRequestQueue(this)
-        val postRequest = object: StringRequest(com.android.volley.Request.Method.POST,url, {
-                response ->
-            Toast.makeText(this,response,Toast.LENGTH_LONG).show()
-
-        },Response.ErrorListener {
-                error ->
-            Log.d("TAG", error.message.toString())
-            Toast.makeText(this,error.message.toString(),Toast.LENGTH_LONG).show()
-        })
-        {
-            override fun getParams() : Map<String,String>{
-                var params = HashMap<String,String>()
-                params["email"]= email
-                params["code"] = value
-                return params
-
-            }
-        }
-        requestQueue.add(postRequest)
-        setListener(value)
-    }
 
 
 

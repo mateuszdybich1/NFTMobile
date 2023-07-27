@@ -5,20 +5,24 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
         tools:context=".ConfirmMailActivity"
         android:background="#333333">
     <LinearLayout
+
             android:gravity="center"
             android:orientation="horizontal"
             android:layout_gravity="center"
             android:layout_width="215dp"
             android:layout_height="85dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" android:id="@+id/linearLayout"
-            app:layout_constraintVertical_bias="0.407">
+            android:id="@+id/linearLayout"
+            app:layout_constraintTop_toBottomOf="@+id/resetTV" app:layout_constraintStart_toStartOf="@+id/resetTV"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="@+id/resetTV"
+            app:layout_constraintHorizontal_bias="0.5" app:layout_constraintVertical_bias="0.134">
 
         <EditText
+
                 android:layout_width="45dp"
                 android:layout_height="70dp"
                 android:maxLength="1"
@@ -30,7 +34,8 @@
                 android:textSize="15pt"
                 android:textCursorDrawable="@null"
                 android:background="@drawable/single_item"
-                android:textColor="@color/white" tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck">
+                android:textColor="@color/white" tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
+               >
 
         </EditText>
         <EditText
@@ -85,14 +90,15 @@
     </LinearLayout>
     <TextView
 
-            android:textStyle="bold"
-            android:textSize="10pt"
+
+            android:textSize="15pt"
             android:gravity="center"
             android:text="Enter Verification Code"
-            android:layout_width="215dp"
-            android:layout_height="70dp" android:id="@+id/resetTV"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-            app:layout_constraintEnd_toEndOf="@+id/linearLayout"
-            app:layout_constraintStart_toStartOf="@+id/linearLayout" app:layout_constraintHorizontal_bias="0.0"
-            android:layout_marginBottom="60dp" android:textColor="#2196F3"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/resetTV"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintVertical_bias="0.208"
+            app:layout_constraintHorizontal_bias="0.494"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
